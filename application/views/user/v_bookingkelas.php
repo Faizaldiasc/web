@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="course-fee h-100">
                                     <!-- <a href="<?php echo base_url() ?>Controller_User/joinclass/<?php echo $id_kursus ?>" class="free">JOIN</a> -->
-                                    <a href="<?php echo base_url() ?>Controller_Login_User" class="btn clever-btn">Gabung Kelas</a>
+                                    <a href="<?php echo base_url() ?>Controller_User/joinclass/<?php echo $id?>" class="btn clever-btn">Gabung Kelas</a>
                                     <?php
                                     $id_user = $this->session->userdata('id');
                                     $id_kursus = $id;

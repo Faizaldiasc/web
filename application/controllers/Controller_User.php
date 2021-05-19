@@ -69,11 +69,26 @@ class Controller_User extends CI_Controller {
 		$this->load->view('user/v_detailkelas',$x);
 		$this->load->view('user/v_footer');
 	}
+	public function insert_enroll($id){
+		$cek=$this->db->get_where('tbl_kursus',['id_kursus'=>$id,'enrollment_key'=>$_POST['enrollment_key']])->row_array();
+		if ($cek != null){
+			$this->db->insert('tbl_mengambil',['id_kursus'=>$id, 'id_user'=>$_SESSION['id']]);
+			redirect('Controller_User/myclass/'.$_SESSION['id']);
+		}
+		else{
+			redirect('Controller_User/joinclass/'.$id.'');
+		}
+	}
 	public function joinclass($id){
-		$id_user = $this->session->userdata('id');
-		$id_kursus = $id;
-		$this->M_addData->insertjoinclass($id_user,$id_kursus);
-		redirect('Controller_User/bookingkelas');
+		$x['id']=$id;
+		// $id_user = $this->session->userdata('id');
+		// $id_kursus = $id;
+		// $this->M_addData->insertjoinclass($id_user,$id_kursus);
+		$this->load->view('user/v_header');
+		$this->load->view('user/v_insert_enroll',$x);
+		$this->load->view('user/v_footer');
+		// redirect('Controller_User/insert_enroll/'.$id.'');
+		
 	}
 	public function editProfileuser(){
 		$config['upload_path'] = './assets/user/img'; //Tempat menyimpan file

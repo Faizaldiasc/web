@@ -23,10 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body>
     <!-- Preloader -->
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
-
+   
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
         <!-- Top Header Area -->

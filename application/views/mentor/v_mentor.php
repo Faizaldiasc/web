@@ -109,6 +109,7 @@ wrapper -->
               <th>Jadwal</th>
               <th>Jumlah Siswa</th>
               <th>Deskripsi</th>
+              <th>Enrollment</th>
               <!-- Jumlah pertemuan di hapus -->
               <th>Aksi</th>
             </tr>
@@ -122,6 +123,7 @@ wrapper -->
               $jadwal = $row['jadwal'];
               $jumlah_siswa = $row['jumlah_siswa'];
               $deskripsi_kelas = $row['deskripsi_kelas'];
+              $enrollment_key = $row['enrollment_key'];
               // $foto_kursus = $row['foto_kursus'];
 
             ?>
@@ -131,6 +133,7 @@ wrapper -->
                 <td> <?php echo $jadwal; ?></td>
                 <td> <?php echo $jumlah_siswa; ?></td>
                 <td><?php echo $deskripsi_kelas; ?></td>
+                <td><?php echo $enrollment_key;?></td>
 
                 <td>
                   <!-- <a href="<?php echo base_url() ?>Controller_Mentor/datasiswa/<?php echo $id ?>">

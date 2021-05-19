@@ -6,11 +6,11 @@ class M_addData extends CI_Model
 		return $this->db->query("INSERT INTO tbl_user(username_user,password_user,nama_user,email_user,cp_user,foto_user) 
 				VALUES('$username','$password','$name','$email','$cp','$foto')");
 	}
-	public function insertKursus($nama, $kelas, $jadwal, $jumlah_siswa, $deskripsi_kelas, $foto, $status)
+	public function insertKursus($nama, $kelas, $jadwal, $jumlah_siswa, $deskripsi_kelas, $foto, $status,$enrollment_key)
 	{
 		return $this->db->query("INSERT INTO tbl_kursus(
-				id_kursus,nama_kelas,kelas, jadwal, jumlah_siswa, deskripsi_kelas,foto_kursus,status) 
-				VALUES('', '$nama','$kelas', '$jadwal', '$jumlah_siswa', '$deskripsi_kelas','$foto','$status')");
+				id_kursus,nama_kelas,kelas, jadwal, jumlah_siswa, deskripsi_kelas,foto_kursus,status,enrollment_key) 
+				VALUES('', '$nama','$kelas', '$jadwal', '$jumlah_siswa', '$deskripsi_kelas','$foto','$status','$enrollment_key')");
 	}
 	public function insertFileKursus($id, $jdl, $deskripsi, $iink)
 	{

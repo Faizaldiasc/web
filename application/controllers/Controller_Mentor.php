@@ -27,6 +27,15 @@ class Controller_Mentor extends CI_Controller
 			redirect('');
 		}
 	}
+	public function generateRandomString($length = 5) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
+	}
 	public function addDataKursus()
 	{
 		$config['upload_path'] = './assets/kursus/img'; //Tempat menyimpan file
@@ -34,12 +43,10 @@ class Controller_Mentor extends CI_Controller
 		$config['max_size']        = 0; //size limits
 
 		$this->upload->initialize($config);
-		if (!empty($_FILES['foto_kursus']['name'])) // cek apakah file ada di form
-		{
-			if ($this->upload->do_upload('foto_kursus')) // cek kondisi do_upload == true
-			{
-
-
+		// if (!empty($_FILES['foto_kursus']['name'])) // cek apakah file ada di form
+		// {
+			// if ($this->upload->do_upload('foto_kursus')) // cek kondisi do_upload == true
+			// {
 				$nama = $this->input->post('nama_kelas');
 				$kelas = $this->input->post('kelas');
 				$jadwal = $this->input->post('jadwal');
@@ -48,10 +55,16 @@ class Controller_Mentor extends CI_Controller
 				$gbr = $this->upload->data(); // upload data 
 				$foto = $gbr['file_name']; //ambil file nama
 				$status = 0;
-				$this->M_addData->insertKursus($nama, $kelas, $jadwal, $jumlah_siswa, $deskripsi_kelas, $foto, $status);
+				$enrollment_key = $this->generateRandomString(5);
+				$cek_enrollment = $this->db->get_where('tbl_kursus',['enrollment_key'=>$enrollment_key])->row_array();
+				while(count($cek_enrollment)>0){
+					$enrollment_key = $this->generateRandomString(5);
+					$cek_enrollment = $this->db->get_where('tbl_kursus',['enrollment_key'=>$enrollment_key])->row_array();
+				}
+				$this->M_addData->insertKursus($nama, $kelas, $jadwal, $jumlah_siswa, $deskripsi_kelas, $foto, $status, $enrollment_key);
 				redirect('Controller_Mentor');
-			}
-		}
+			// }
+		// }
 	}
 	public function addMateri($id)
 	{
